@@ -1,0 +1,1 @@
+This résumé pulls repository and commit information from the GitHub API. Feel free to use it as a template for your résumé - just modify the `Resume.Github.setUsername()` call to use your GitHub username in `public/assets/js/resume/main.js`.
