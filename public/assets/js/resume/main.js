@@ -16,6 +16,14 @@ Resume = function() {
         });
     };
 
+    var loadAvatar = function() {
+        Resume.Github.getUserInfo(function(info) {
+            var avatar = $(document.createElement('img')).attr({ src: info.avatar_url });
+
+            $('#avatar').append(avatar);
+        });
+    };
+
     var populateRepositories = function() {
         Resume.Github.getRepositories(function(repositories) {
             var sorted = Resume.Github.sortRepositoriesByPopularity(repositories);
@@ -55,6 +63,7 @@ Resume = function() {
                 populateCommits();
             });
 
+            loadAvatar();
             populateRepositories();
 
             Resume.Navigation.build();
