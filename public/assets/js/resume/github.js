@@ -61,9 +61,18 @@ Resume.Github = function() {
         },
 
         getCommits: function(callback) {
-            var repository_count = self.repositories.length;
+            var repository_count = 0;
+            var i = self.repositories.length;
+
+            while (i--) {
+                if (self.repositories[i].fork === false) {
+                    // Only include non-forked repositories
+                    repository_count += 1;
+                }
+            }
 
             if (repository_count > 0 && self.repositoryCommitsRetrieved.length === repository_count) {
+                // Commits have already been retrieved from the API
                 return callback(self.commits);
             }
 
@@ -73,6 +82,10 @@ Resume.Github = function() {
 
                 while (i--) {
                     repository = self.repositories[i];
+
+                    if (repository.fork !== false) {
+                        continue;
+                    }
 
                     $.getJSON('https://api.github.com/repos/' + self.username + '/' + repository.name + '/commits?callback=?', function(commits) {
                         self.repositoryCommitsRetrieved.push(repository.name);
