@@ -51,8 +51,3 @@ nav .active:after {
 .ipc, .ipc:hover {
   color: #046;
 }
-
-.popover-content {
-  text-align: center;
-  padding: 4px;
-}
