@@ -32,7 +32,7 @@ Resume = function() {
                 repositories: sorted
             };
 
-            loadView('views/github-repositories.html', view, $('#github-repositories'));
+            loadView('views/github-repositories.html', view, $('.github .repositories'));
         });
     };
 
@@ -41,7 +41,7 @@ Resume = function() {
             var sorted = Resume.Github.getLatestUserCommits(commits);
 
             var view = {
-                commits: sorted.splice(0, 10),
+                commits: sorted.splice(0, 6),
                 shortHash: function() {
                     return this.sha.substr(0, 8);
                 },
@@ -50,7 +50,7 @@ Resume = function() {
                 }
             };
 
-            loadView('views/recent-commits.html', view, $('#recent-commits'));
+            loadView('views/recent-commits.html', view, $('.github .commits'));
         });
     };
 
