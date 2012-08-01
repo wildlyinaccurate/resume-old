@@ -10,6 +10,7 @@ Resume.Github = function() {
     self.username = '';
     self.repositories = [];
     self.commits = [];
+    self.gists = [];
 
     // Keep track of which repositories we've retrieved commits for
     self.repositoryCommitsRetrieved = [];
@@ -96,6 +97,29 @@ Resume.Github = function() {
                             callback(self.commits);
                         }
                     });
+                }
+            });
+        },
+
+        getGists: function(callback, page, previous_data) {
+            if (self.gists.length > 0) {
+                // Gists have already been retrieved from the API
+                return callback(self.gists);
+            }
+
+            var page = page || 1,
+                data = previous_data || [];
+
+            $.getJSON('https://api.github.com/users/' + self.username + '/gists?page=' + page + '&callback=?', function(gists) {
+                data = data.concat(gists.data);
+
+                if (gists.data.length > 0) {
+                    Resume.Github.getGists(callback, page + 1, data);
+                } else {
+                    self.gists = data;
+
+                    Resume.Event.fire('github.gists::loaded');
+                    callback(self.gists);
                 }
             });
         },

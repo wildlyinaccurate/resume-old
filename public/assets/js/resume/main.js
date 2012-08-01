@@ -54,6 +54,36 @@ Resume = function() {
         });
     };
 
+    var populateGists = function() {
+        Resume.Github.getGists(function(gists) {
+            var view = {
+                gists: gists,
+                files_count: function() {
+                    var count = 0;
+
+                    for (file in this.files) {
+                        count++;
+                    }
+
+                    count += (count > 1) ? ' files' : ' file';
+
+                    return count;
+                },
+                files_array: function() {
+                    var files = [];
+
+                    for (file in this.files) {
+                        files.push(this.files[file]);
+                    }
+
+                    return files;
+                }
+            };
+
+            loadView('views/gists.html', view, $('.github .gists'));
+        });
+    };
+
     return {
 
         init: function() {
@@ -65,6 +95,7 @@ Resume = function() {
 
             loadAvatar();
             populateRepositories();
+            populateGists();
 
             Resume.Navigation.build();
         }
