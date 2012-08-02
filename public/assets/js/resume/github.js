@@ -7,6 +7,7 @@ Resume.Github = function() {
 
     var self = this;
 
+    self.per_page = 30;
     self.username = '';
     self.repositories = [];
     self.commits = [];
@@ -32,6 +33,10 @@ Resume.Github = function() {
             self.username = username;
         },
 
+        setPerPage: function(per_page) {
+            self.per_page = per_page;
+        },
+
         getUserInfo: function(callback) {
             $.getJSON('https://api.github.com/users/' + self.username + '?callback=?', function(info) {
                 callback(info.data);
@@ -44,13 +49,13 @@ Resume.Github = function() {
                 return callback(self.repositories);
             }
 
-            var page = page || 1,
-                data = previous_data || [];
+            var page = page || 1;
+            var data = previous_data || [];
 
-            $.getJSON('https://api.github.com/users/' + self.username + '/repos?page=' + page + '&callback=?', function(repositories) {
+            $.getJSON('https://api.github.com/users/' + self.username + '/repos?page=' + page + '&per_page=' + self.per_page + '&callback=?', function(repositories) {
                 data = data.concat(repositories.data);
 
-                if (repositories.data.length > 0) {
+                if (repositories.data.length === self.per_page) {
                     Resume.Github.getRepositories(callback, page + 1, data);
                 } else {
                     self.repositories = data;
@@ -110,10 +115,10 @@ Resume.Github = function() {
             var page = page || 1,
                 data = previous_data || [];
 
-            $.getJSON('https://api.github.com/users/' + self.username + '/gists?page=' + page + '&callback=?', function(gists) {
+            $.getJSON('https://api.github.com/users/' + self.username + '/gists?page=' + page + '&per_page=' + self.per_page + '&callback=?', function(gists) {
                 data = data.concat(gists.data);
 
-                if (gists.data.length > 0) {
+                if (gists.data.length === self.per_page) {
                     Resume.Github.getGists(callback, page + 1, data);
                 } else {
                     self.gists = data;
