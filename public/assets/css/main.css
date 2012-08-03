@@ -31,7 +31,7 @@ section {
   margin-bottom: 24px;
 }
 
-nav .active:after {
+nav .active a:after {
   content: " \00BB";
   text-decoration: underline;
 }
