@@ -1,10 +1,4 @@
 {{#gists}}
 	<h4><a href="{{html_url}}">{{description}}</a></h4>
-	<p>{{files_count}}:</p>
-
-	<ul>
-	{{#files_array}}
-		<li>{{filename}} ({{language}})</li>
-	{{/files_array}}
-	</ul>
+	<p>{{filesCount}}: {{languages}}</p>
 {{/gists}}

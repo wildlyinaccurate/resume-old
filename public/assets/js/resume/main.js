@@ -29,7 +29,12 @@ Resume = function() {
             var sorted = Resume.Github.sortRepositoriesByPopularity(repositories);
 
             var view = {
-                repositories: sorted
+                repositories: sorted,
+                homepageLink: function() {
+                    if (this.repository.homepage !== '') {
+                        return ' &ndash; <a href="' + this.repository.homepage + '">' + this.repository.homepage + '</a>';
+                    }
+                }
             };
 
             loadView('views/github-repositories.html', view, $('.github .repositories'));
@@ -41,7 +46,7 @@ Resume = function() {
             var sorted = Resume.Github.getLatestUserCommits(commits);
 
             var view = {
-                commits: sorted.splice(0, 6),
+                commits: sorted.splice(0, 8),
                 shortHash: function() {
                     return this.sha.substr(0, 8);
                 },
@@ -58,7 +63,7 @@ Resume = function() {
         Resume.Github.getGists(function(gists) {
             var view = {
                 gists: gists,
-                files_count: function() {
+                filesCount: function() {
                     var count = 0;
 
                     for (file in this.files) {
@@ -69,14 +74,32 @@ Resume = function() {
 
                     return count;
                 },
-                files_array: function() {
-                    var files = [];
+                languages: function() {
+                    var languages = {};
+                    var total = 0;
+                    var file;
 
-                    for (file in this.files) {
-                        files.push(this.files[file]);
+                    for (var n in this.files) {
+                        file = this.files[n];
+                        total++;
+
+                        languages[file.language] = (languages[file.language] || 0) + 1;
                     }
 
-                    return files;
+                    var output = [];
+                    var share;
+
+                    for (var language in languages) {
+                        share = Math.floor(languages[language] / total * 100);
+
+                        if (share === 100) {
+                            output.push(language);
+                        } else {
+                            output.push(language + ' (' + share + '%)');
+                        }
+                    }
+
+                    return output.join(', ');
                 }
             };
 
