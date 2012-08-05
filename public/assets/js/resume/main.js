@@ -18,7 +18,7 @@ Resume = function() {
 
     var loadAvatar = function() {
         Resume.Github.getUserInfo(function(info) {
-            var avatar = $(document.createElement('img')).attr({ src: info.avatar_url });
+            var avatar = $(document.createElement('img')).attr('src', info.avatar_url);
 
             $('#avatar').append(avatar);
         });
