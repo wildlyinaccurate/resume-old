@@ -96,8 +96,6 @@ Resume = function() {
             loadAvatar();
             populateRepositories();
             populateGists();
-
-            Resume.Navigation.build();
         }
 
     };
