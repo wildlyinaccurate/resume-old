@@ -26,14 +26,28 @@ Resume = function() {
 
     var populateRepositories = function() {
         Resume.Github.getRepositories(function(repositories) {
-            var sorted = Resume.Github.sortRepositoriesByPopularity(repositories);
+            var my_repositories = [];
+            var forked_repositories = [];
+            var i = repositories.length;
+
+            while (i--) {
+                if (repositories[i].fork !== false) {
+                    forked_repositories.push(repositories[i]);
+                } else {
+                    my_repositories.push(repositories[i])
+                }
+            }
 
             var view = {
-                repositories: sorted,
+                my_repositories: Resume.Github.sortRepositoriesByPopularity(my_repositories),
+                forked_repositories: Resume.Github.sortRepositoriesByLastCommit(forked_repositories),
                 homepageLink: function() {
-                    if (this.repository.homepage !== '') {
-                        return ' &ndash; <a href="' + this.repository.homepage + '">' + this.repository.homepage + '</a>';
+                    if (this.homepage !== '') {
+                        return ' &ndash; <a href="' + this.homepage + '">' + this.homepage + '</a>';
                     }
+                },
+                lastCommitTime: function() {
+                    return Resume.Helper.humanReadableTime(new Date(this.pushed_at));
                 }
             };
 
@@ -119,6 +133,12 @@ Resume = function() {
             loadAvatar();
             populateRepositories();
             populateGists();
+
+            $('.github').on('click', '.more-repositories, .less-repositories', function(event) {
+                $('.github .forked-repositories').toggle('slow');
+                $('.github').find('.more-repositories, .less-repositories').toggle();
+                event.preventDefault();
+            });
         }
 
     };

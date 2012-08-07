@@ -51,3 +51,7 @@ nav .active a:after {
 .ipc, .ipc:hover {
   color: #046;
 }
+
+.github .forked-repositories, .github .less-repositories {
+  display: none;
+}

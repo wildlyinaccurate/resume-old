@@ -1,4 +1,16 @@
-{{#repositories}}
-	<h4><a href="{{repository.html_url}}">{{repository.name}}</a></h4>
-	<p class="description">{{repository.description}} {{{homepageLink}}}</p>
-{{/repositories}}
+{{#my_repositories}}
+	<h4><a href="{{html_url}}">{{name}}</a></h4>
+	<p class="description">{{description}} {{{homepageLink}}}</p>
+	<p class="last-commit"><small>Last updated {{lastCommitTime}}</small></p>
+{{/my_repositories}}
+
+<div class="forked-repositories">
+{{#forked_repositories}}
+	<h4><a href="{{html_url}}">{{name}}</a></h4>
+	<p class="description">{{description}}</p>
+	<p class="last-commit"><small>Last updated {{lastCommitTime}}</small></p>
+{{/forked_repositories}}
+</div>
+
+<a class="more-repositories btn"><i class="icon-chevron-down"></i> More repositories</a>
+<a class="less-repositories btn"><i class="icon-chevron-up"></i> Less repositories</a>

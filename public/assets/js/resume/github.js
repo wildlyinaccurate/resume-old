@@ -27,6 +27,13 @@ Resume.Github = function() {
         return dateB - dateA;
     };
 
+    self.sortByLastCommit = function(a, b) {
+        var dateA = new Date(a.pushed_at);
+        var dateB = new Date(b.pushed_at);
+
+        return dateB - dateA;
+    }
+
     return {
 
         setUsername: function(username) {
@@ -67,17 +74,9 @@ Resume.Github = function() {
         },
 
         getCommits: function(callback) {
-            var repository_count = 0;
             var i = self.repositories.length;
 
-            while (i--) {
-                if (self.repositories[i].fork === false) {
-                    // Only include non-forked repositories
-                    repository_count += 1;
-                }
-            }
-
-            if (repository_count > 0 && self.repositoryCommitsRetrieved.length === repository_count) {
+            if (self.repositories.length > 0 && self.repositoryCommitsRetrieved.length === self.repositories.length) {
                 // Commits have already been retrieved from the API
                 return callback(self.commits);
             }
@@ -89,15 +88,11 @@ Resume.Github = function() {
                 while (i--) {
                     repository = self.repositories[i];
 
-                    if (repository.fork !== false) {
-                        continue;
-                    }
-
                     $.getJSON('https://api.github.com/repos/' + self.username + '/' + repository.name + '/commits?callback=?', function(commits) {
                         self.repositoryCommitsRetrieved.push(repository.name);
                         self.commits = self.commits.concat(commits.data);
 
-                        if (self.repositoryCommitsRetrieved.length === repository_count) {
+                        if (self.repositoryCommitsRetrieved.length === self.repositories.length) {
                             Resume.Event.fire('github.commits::loaded');
                             callback(self.commits);
                         }
@@ -137,21 +132,16 @@ Resume.Github = function() {
 
             while (i--) {
                 repository = repositories[i];
+                repository.popularity = repository.watchers + repository.forks;
 
-                if (repository.fork !== false) {
-                    continue;
-                }
-
-                popularity = repository.watchers + repository.forks;
-
-                sorted.unshift({
-                    position: i,
-                    popularity: popularity,
-                    repository: repository
-                });
+                sorted.unshift(repository);
             }
 
             return sorted.sort(self.sortByPopularity);
+        },
+
+        sortRepositoriesByLastCommit: function(repositories) {
+            return repositories.sort(self.sortByLastCommit);
         },
 
         getLatestUserCommits: function(commits) {
