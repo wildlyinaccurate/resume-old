@@ -65,7 +65,7 @@ Resume = function() {
                     return this.sha.substr(0, 8);
                 },
                 niceTime: function() {
-                    return Resume.Helper.humanReadableTime(new Date(this.commit.author.date));
+                    return Resume.Helper.humanReadableTime(new Date(this.commit.committer.date));
                 }
             };
 

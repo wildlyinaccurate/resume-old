@@ -21,8 +21,8 @@ Resume.Github = function() {
     };
 
     self.sortByDate = function(a, b) {
-        var dateA = new Date(a.commit.author.date);
-        var dateB = new Date(b.commit.author.date);
+        var dateA = new Date(a.commit.committer.date);
+        var dateB = new Date(b.commit.committer.date);
 
         return dateB - dateA;
     };
