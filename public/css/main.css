@@ -53,6 +53,10 @@ nav .active a:after {
   color: #046;
 }
 
+.freelancer {
+  color: #192;
+}
+
 .github .forked-repositories, .github .less-repositories {
   display: none;
 }
