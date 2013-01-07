@@ -32,7 +32,7 @@ Resume.Github = function() {
         var dateB = new Date(b.pushed_at);
 
         return dateB - dateA;
-    }
+    };
 
     self.ApiCall = function(uri, callback) {
         uri += (uri.indexOf('?') === -1) ? '?' : '&';
@@ -62,7 +62,8 @@ Resume.Github = function() {
                 return callback(self.repositories);
             }
 
-            var page = page || 1;
+            page = page || 1;
+
             var data = previous_data || [];
 
             self.ApiCall('users/' + self.username + '/repos?page=' + page + '&per_page=' + self.per_page, function(repositories) {
@@ -113,8 +114,9 @@ Resume.Github = function() {
                 return callback(self.gists);
             }
 
-            var page = page || 1,
-                data = previous_data || [];
+            page = page || 1;
+
+            var data = previous_data || [];
 
             self.ApiCall('users/' + self.username + '/gists?page=' + page + '&per_page=' + self.per_page, function(gists) {
                 data = data.concat(gists.data);
@@ -158,7 +160,7 @@ Resume.Github = function() {
             while (i--) {
                 commit = commits[i];
 
-                if (commit.author !== null && commit.author.login === self.username) {
+                if (commit.author && commit.author.login === self.username) {
                     user_commits.push(commit);
                 }
             }

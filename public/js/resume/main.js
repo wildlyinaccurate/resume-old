@@ -34,7 +34,7 @@ Resume = function() {
                 if (repositories[i].fork !== false) {
                     forked_repositories.push(repositories[i]);
                 } else {
-                    my_repositories.push(repositories[i])
+                    my_repositories.push(repositories[i]);
                 }
             }
 
@@ -80,7 +80,7 @@ Resume = function() {
                 filesCount: function() {
                     var count = 0;
 
-                    for (file in this.files) {
+                    for (var file in this.files) {
                         count++;
                     }
 
