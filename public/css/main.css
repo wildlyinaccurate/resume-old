@@ -6,20 +6,21 @@ a {
 
 body {
   font-family: 'Open Sans', sans-serif;
+  background: url(../img/light_wool.png);
 }
 
 h1, h2 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'PT Serif', serif;
 }
 
 h1 {
-  font-size: 3.4em;
+  font-size: 36px;
   float: left;
 }
 
 h2 {
-  font-size: 2.1em;
-  margin: 0 0 0.2em;
+  font-size: 24px;
+  margin: 0 0 6px;
 }
 
 header {
@@ -27,7 +28,7 @@ header {
   padding: 24px 0 48px;
 }
 
-section {
+.section {
   margin-bottom: 24px;
 }
 
@@ -50,6 +51,10 @@ nav .active a:after {
 
 .ipc, .ipc:hover {
   color: #046;
+}
+
+.freelancer {
+  color: #192;
 }
 
 .github .forked-repositories, .github .less-repositories {

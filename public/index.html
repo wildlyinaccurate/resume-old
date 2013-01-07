@@ -11,13 +11,13 @@
     <meta name="description" content="Joseph Wynn - My online résumé">
     <meta name="viewport" content="width=device-width">
 
-    <link href="http://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400italic,400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/vendor/bootstrap.css">
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif|Open+Sans:400italic,400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/vendor/bootstrap-2.2.1.min.css">
     <link rel="stylesheet" href="css/main.css">
 
     <script src="js/vendor/modernizr-2.6.1.js"></script>
 </head>
-<body data-spy="scroll">
+<body>
 
     <div class="container">
         <header>
@@ -26,7 +26,7 @@
 
         <div class="row">
             <div class="span6">
-                <section>
+                <div class="section">
                     <h2 id="about-me">About Me</h2>
 
                     <div class="row">
@@ -35,53 +35,84 @@
                             <p>Hi there! I am a developer currently based in London, UK. Right now I am working as a PHP developer, but in my spare time I like to write Python and Ruby. Outside of programming I am a cook, runner, musician and beer enthusiast. I sometimes blog at <a href="http://wildlyinaccurate.com/">Wildly Inaccurate</a>.</p>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <section>
+                <div class="section">
                     <h2 id="key-skills">Key Skills</h2>
 
                     <div class="row">
-                        <div class="span2">
-                            <h3>PHP</h3>
-                            <p></p>
+                        <div class="span3">
+                            <h4>PHP</h4>
+                            <p>
+                                <span class="label label-info">Symfony</span>
+                                <span class="label label-info">Doctrine</span>
+                                <span class="label label-info">Laravel</span>
+                                <span class="label label-info">CodeIgniter</span>
+                                <span class="label label-info">SPL</span>
+                            </p>
                         </div>
 
-                        <div class="span2">
-                            <h3>HTML &amp; CSS</h3>
-                            <p></p>
-                        </div>
-
-                        <div class="span2">
-                            <h3>Javascript</h3>
-                            <p></p>
+                        <div class="span3">
+                            <h4>HTML &amp; CSS</h4>
+                            <p>
+                                <span class="label label-info">HTML5</span>
+                                <span class="label label-info">CSS3</span>
+                                <span class="label label-info">Front-End Performance</span>
+                                <span class="label label-info">Mobile Optimisation</span>
+                            </p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="span2">
-                            <h3>Version Control</h3>
-                            <p></p>
+                        <div class="span3">
+                            <h4>Javascript</h4>
+                            <p>
+                                <span class="label label-info">Backbone.js</span>
+                                <span class="label label-info">Knockout</span>
+                                <span class="label label-info">jQuery</span>
+                            </p>
                         </div>
 
-                        <div class="span2">
-                            <h3>Testing</h3>
-                            <p></p>
-                        </div>
-
-                        <div class="span2">
-                            <h3>Server Administration</h3>
-                            <p></p>
+                        <div class="span3">
+                            <h4>Version Control</h4>
+                            <p>
+                                <span class="label label-info">Git</span>
+                                <span class="label label-info">SVN</span>
+                            </p>
                         </div>
                     </div>
-                </section>
 
-                <section>
+                    <div class="row">
+                        <div class="span3">
+                            <h4>Testing</h4>
+                            <p>
+                                <span class="label label-info">PHPUnit</span>
+                                <span class="label label-info">Behat</span>
+                                <span class="label label-info">Cactus</span>
+                            </p>
+                        </div>
+
+                        <div class="span3">
+                            <h4>Server Administration</h4>
+                                <span class="label label-info">Apache</span>
+                                <span class="label label-info">Nginx</span>
+                                <span class="label label-info">MySQL</span>
+                                <span class="label label-info">PHP</span>
+                                <span class="label label-info">Monitoring</span>
+                                <span class="label label-info">Security</span>
+                            <p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
                     <h2 id="employment-history">Employment History</h2>
 
                     <div class="row">
                         <div class="span2">May 2012 &ndash; Present</div>
                         <div class="span4">
-                            <p><strong>Developer</strong> at <a class="employer ipc" href="http://www.ipcmedia.com/">IPC Media</a></p>
+                            <p><b>Developer</b> at <a class="employer ipc" href="http://www.ipcmedia.com/">IPC Media</a></p>
                             <p>I am currently part of a team that builds and maintains high-traffic magazine websites.</p>
                         </div>
                     </div>
@@ -89,7 +120,7 @@
                     <div class="row">
                         <div class="span2">April 2011 &ndash; May 2012</div>
                         <div class="span4">
-                            <p><strong>Developer</strong> at <a class="employer chroma" href="http://chromaagency.com/">Chroma</a></p>
+                            <p><b>Developer</b> at <a class="employer chroma" href="http://chromaagency.com/">Chroma</a></p>
                             <p>During my time at Chroma I was involved in building, delivering and maintaining websites using ExpressionEngine and CodeIgniter. I designed and built a system that processed and delivered business-critical data in near real-time, and helped to implement a continuous integration process for several projects.</p>
                         </div>
                     </div>
@@ -97,13 +128,21 @@
                     <div class="row">
                         <div class="span2">June 2010 &ndash; April 2011</div>
                         <div class="span4">
-                            <p><strong>Developer</strong> at <a class="employer zeevo" href="http://zeevo.co.nz/">Zeevo</a></p>
+                            <p><b>Developer</b> at <a class="employer zeevo" href="http://zeevo.co.nz/">Zeevo</a></p>
                             <p>Using CodeIgniter and Doctrine, our team built a <a href="http://book.totallytourism.co.nz/">booking and scheduling system</a> for tourism operators. I was also involved in designing and building a secure file sharing application using the Dropbox API.</p>
                         </div>
                     </div>
-                </section>
 
-                <section>
+                    <div class="row">
+                        <div class="span2">2008 &ndash; 2010</div>
+                        <div class="span4">
+                            <p><b class="freelancer">Freelancer</b></p>
+                            <p>Working as a freelancer I built websites on Wordpress and bespoke PHP systems. Some of the websites I worked on are <a href="http://www.prologue.co.nz/">Prologue</a>, <a href="http://www.2feettall.com/">2FeetTall</a> and <a href="http://www.bali-direct-villa.com/">Villa Puri Indah</a>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
                     <h2 id="education">Education</h2>
 
                     <h4>Bachelor in Information &amp; Communication Technology</h4>
@@ -111,33 +150,33 @@
 
                     <h4>Diploma in Information &amp; Communication Technology</h4>
                     <p>Christchurch Polytechnic Institute of Technology 2007 &ndash; 2009</p>
-                </section>
+                </div>
             </div>
 
             <div class="span6 github">
                 <div class="row">
                     <section class="span6 repositories" style="display: none;">
                         <h2>GitHub Repositories</h2>
-                    </section>
+                    </div>
                 </div>
 
                 <div class="row">
                     <section class="span3 commits" style="display: none;">
                         <h2>Recent Commits</h2>
-                    </section>
+                    </div>
 
                     <section class="span3 gists" style="display: none;">
                         <h2>My Gists</h2>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
 
-    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/bootstrap-2.2.1.min.js"></script>
     <script src="js/vendor/mustache.js"></script>
     <script src="js/resume/main.js"></script>
     <script src="js/resume/helper.js"></script>
