@@ -1,4 +1,4 @@
 {{#commits}}
-	<h4><a href="{{url}}">{{shortHash}}</a> &ndash; <span class="date">{{niceTime}}</span></h4>
+	<h4><a href="{{url}}">{{shortHash}}</a> &ndash; <time datetime="{{commit.committer.date}}">{{niceTime}}</span></h4>
 	<p>{{commit.message}}</p>
 {{/commits}}
