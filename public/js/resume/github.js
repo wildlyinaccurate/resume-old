@@ -34,6 +34,12 @@ Resume.Github = function() {
         return dateB - dateA;
     }
 
+    self.ApiCall = function(uri, callback) {
+        uri += (uri.indexOf('?') === -1) ? '?' : '&';
+
+        $.getJSON('https://api.github.com/' + uri + 'callback=?', callback);
+    };
+
     return {
 
         setUsername: function(username) {
@@ -45,7 +51,7 @@ Resume.Github = function() {
         },
 
         getUserInfo: function(callback) {
-            $.getJSON('https://api.github.com/users/' + self.username + '?callback=?', function(info) {
+            self.ApiCall('users/' + self.username, function(info) {
                 callback(info.data);
             });
         },
@@ -59,7 +65,7 @@ Resume.Github = function() {
             var page = page || 1;
             var data = previous_data || [];
 
-            $.getJSON('https://api.github.com/users/' + self.username + '/repos?page=' + page + '&per_page=' + self.per_page + '&callback=?', function(repositories) {
+            self.ApiCall('users/' + self.username + '/repos?page=' + page + '&per_page=' + self.per_page, function(repositories) {
                 data = data.concat(repositories.data);
 
                 if (repositories.data.length === self.per_page) {
@@ -88,7 +94,7 @@ Resume.Github = function() {
                 while (i--) {
                     repository = self.repositories[i];
 
-                    $.getJSON('https://api.github.com/repos/' + self.username + '/' + repository.name + '/commits?callback=?', function(commits) {
+                    self.ApiCall('repos/' + self.username + '/' + repository.name + '/commits', function(commits) {
                         self.repositoryCommitsRetrieved.push(repository.name);
                         self.commits = self.commits.concat(commits.data);
 
@@ -110,7 +116,7 @@ Resume.Github = function() {
             var page = page || 1,
                 data = previous_data || [];
 
-            $.getJSON('https://api.github.com/users/' + self.username + '/gists?page=' + page + '&per_page=' + self.per_page + '&callback=?', function(gists) {
+            self.ApiCall('users/' + self.username + '/gists?page=' + page + '&per_page=' + self.per_page, function(gists) {
                 data = data.concat(gists.data);
 
                 if (gists.data.length === self.per_page) {
